@@ -21,6 +21,6 @@ Suggested public repo names:
 - `maya-rivera-portfolio`
 - `impulseworks-sample-portfolio`
 
-The live URL would then be `https://<github-username>.github.io/<repo>/` unless a custom domain is added later. After a live URL exists, the Open Graph image path in each page’s `<head>` (`assets/og-image.png`) can optionally be changed to an absolute URL if a particular crawler requires it.
+Live at `https://impulseworks.github.io/sample-portfolio/`.
 
 Do not replace this fictional content with anyone's real resume, photo, or employer names.
