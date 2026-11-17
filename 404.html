@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Maya Rivera</title>
+  <meta name="description" content="That page was not found on Maya Rivera’s portfolio site. Fictional sample for impulseworks.">
+  <meta name="theme-color" content="#f3efe6">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231b1814'/%3E%3Ctext x='16.2' y='21.4' text-anchor='middle' font-family='IBM Plex Sans,Helvetica,Arial,sans-serif' font-size='11.5' font-weight='600' fill='%23f3efe6'%3EMR%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <style>
+    :root {
+      --paper: #f3efe6;
+      --ink: #1b1814;
+      --ink-soft: #5c574e;
+      --accent: #8a3f28;
+      --line: #d6d0c4;
+      --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --serif: "Instrument Serif", "Times New Roman", Times, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    main {
+      width: min(100% - 2.5rem, 40rem);
+      margin: auto;
+      padding: 3rem 0;
+    }
+    p.kicker {
+      margin: 0 0 0.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    h1 {
+      margin: 0 0 1rem;
+      font-family: var(--serif);
+      font-size: clamp(2.25rem, 7vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    p { margin: 0 0 1.25rem; max-width: 36rem; }
+    a { color: var(--accent); }
+    a:hover { color: #6c311f; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: 0.55rem 1.15rem;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-weight: 500;
+      border: 1px solid var(--ink);
+    }
+    .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    footer {
+      padding: 1.5rem 1.25rem;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">404</p>
+    <h1>This page is not here.</h1>
+    <p>The address may be mistyped, or the page may have moved. This is a fictional portfolio sample for impulseworks, not a real client site.</p>
+    <p><a class="btn" id="home-link" href="index.html">Back to home</a></p>
+  </main>
+  <footer>Fictional sample for impulseworks. Not a real person or client.</footer>
+  <script>
+    (function () {
+      var link = document.getElementById("home-link");
+      if (!link) return;
+      var parts = location.pathname.split("/").filter(Boolean);
+      var tries = ["/"];
+      // First path segment is the project repo on GitHub Pages project sites.
+      // Skip it if it looks like a filename (e.g. someone opened /404.html directly).
+      if (parts.length && parts[0].indexOf(".") === -1) {
+        tries.unshift("/" + parts[0] + "/");
+      }
+      function check(i) {
+        if (i >= tries.length) return;
+        var base = tries[i];
+        fetch(base + "index.html", { method: "HEAD" }).then(function (res) {
+          if (res.ok) {
+            link.href = base + "index.html";
+          } else {
+            check(i + 1);
+          }
+        }).catch(function () { check(i + 1); });
+      }
+      check(0);
+    })();
+  </script>
+</body>
+</html>
